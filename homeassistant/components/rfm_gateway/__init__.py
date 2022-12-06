@@ -1,4 +1,4 @@
-"""The JT Gateway component."""
+"""The RFM Gateway component."""
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
@@ -7,9 +7,6 @@ from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.typing import ConfigType
 
 from .const import CONF_GATEWAYS, DOMAIN, MACUFACTURER
-
-ATTRIBUTION = "ispyconnect.com"
-DEFAULT_BRAND = "Agent DVR by ispyconnect.com"
 
 PLATFORMS = [Platform.SENSOR]
 
@@ -36,6 +33,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
-    """Set up the Custom component from yaml configuration."""
+    """Set up the custom component from yaml configuration."""
     hass.data.setdefault(DOMAIN, {})
     return True

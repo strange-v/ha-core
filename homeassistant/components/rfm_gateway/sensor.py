@@ -1,4 +1,4 @@
-"""Support for colecting data from remote nodes through JT Gateway."""
+"""Support for colecting data from remote nodes through RFM Gateway."""
 from __future__ import annotations
 
 import logging
@@ -73,9 +73,7 @@ async def async_setup_platform(
     async_add_entities: AddEntitiesCallback,
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
-    """Set up the JT Gateway platform."""
-
-    # for gateway in config[CONF_GATEWAYS]:
+    """Set up the RFM Gateway platform."""
 
     @callback
     def async_sensor_event_received(msg):
@@ -170,7 +168,7 @@ def compose_node_entities(gateway_id: str, data: bytes) -> list[NodeSensor]:
 
 
 class NodeSensor(SensorEntity):
-    """Representation of a sensor connected to the JT Gateway."""
+    """Representation of a sensor connected to the RFM Gateway."""
 
     _attr_should_poll = False
     node_type = 0
@@ -261,7 +259,7 @@ def compose_entity(
         units=units,
         device_info=node,
     )
-    sensor.entity_id = f"sensor.jt_node_{node_id}_{slugify(name)}"
+    sensor.entity_id = f"sensor.rfm_node_{node_id}_{slugify(name)}"
     return sensor
 
 

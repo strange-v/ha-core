@@ -579,7 +579,6 @@ build.json @home-assistant/supervisor
 /tests/components/jellyfin/ @j-stienstra @ctalkington
 /homeassistant/components/jewish_calendar/ @tsvi
 /tests/components/jewish_calendar/ @tsvi
-/homeassistant/components/jt_gateway/ @strange_v
 /homeassistant/components/juicenet/ @jesserockz
 /tests/components/juicenet/ @jesserockz
 /homeassistant/components/justnimbus/ @kvanzuijlen
@@ -946,6 +945,7 @@ build.json @home-assistant/supervisor
 /homeassistant/components/repetier/ @MTrab @ShadowBr0ther
 /homeassistant/components/rflink/ @javicalle
 /tests/components/rflink/ @javicalle
+/homeassistant/components/rfm_gateway/ @strange_v
 /homeassistant/components/rfxtrx/ @danielhiversen @elupus @RobBie1221
 /tests/components/rfxtrx/ @danielhiversen @elupus @RobBie1221
 /homeassistant/components/rhasspy/ @balloob @synesthesiam

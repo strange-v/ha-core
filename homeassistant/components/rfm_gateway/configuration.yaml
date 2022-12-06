@@ -1,6 +1,6 @@
 sensor:
-  - platform: jt_gateway
+  - platform: rfm_gateway
     gateways:
       - mac: mac_address
-        name: My Gateway
+        name: RFM Gateway
       - mac: mac_address

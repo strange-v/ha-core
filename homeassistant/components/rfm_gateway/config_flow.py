@@ -1,4 +1,4 @@
-"""Config flow for JT Gateway."""
+"""Config flow for RFM Gateway."""
 from __future__ import annotations
 
 import logging
@@ -13,7 +13,7 @@ from homeassistant.const import CONF_MAC, CONF_NAME
 from homeassistant.data_entry_flow import FlowResult
 import homeassistant.helpers.config_validation as cv
 
-from .const import CONF_GATEWAYS, DOMAIN, STORE
+from .const import CONF_GATEWAYS, DOMAIN, GW_NAME, STORE
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -27,7 +27,7 @@ GATEWAY_SCHEMA = vol.Schema(
 
 
 class GatewayConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """JT Gateway config flow."""
+    """RFM Gateway config flow."""
 
     def __init__(self) -> None:
         """Ititialization of GatewayConfigFlow."""
@@ -37,7 +37,7 @@ class GatewayConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
-        """Configuraing a gateway."""
+        """Configure a gateway."""
         errors: dict[str, str] = {}
 
         if user_input is not None:
@@ -52,14 +52,14 @@ class GatewayConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 self.data[CONF_GATEWAYS].append(
                     {
                         "mac": user_input[CONF_MAC],
-                        "name": user_input.get(CONF_NAME, user_input[CONF_MAC]),
+                        "name": user_input.get(CONF_NAME, GW_NAME),
                     }
                 )
 
                 if user_input.get("add_another", False):
                     return await self.async_step_user()
 
-                return self.async_create_entry(title="JT Gateway", data=self.data)
+                return self.async_create_entry(title=GW_NAME, data=self.data)
 
         return self.async_show_form(
             step_id="user", data_schema=GATEWAY_SCHEMA, errors=errors
