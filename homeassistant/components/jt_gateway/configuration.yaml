@@ -1,0 +1,6 @@
+sensor:
+  - platform: jt_gateway
+    gateways:
+      - mac: mac_address
+        name: My Gateway
+      - mac: mac_address

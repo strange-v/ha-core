@@ -2568,6 +2568,12 @@
       "config_flow": false,
       "iot_class": "cloud_push"
     },
+    "jt_gateway": {
+      "name": "JT Gateway",
+      "integration_type": "hub",
+      "config_flow": true,
+      "iot_class": "local_push"
+    },
     "juicenet": {
       "name": "JuiceNet",
       "integration_type": "hub",
