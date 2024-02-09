@@ -1,5 +1,4 @@
 """The tests for the microsoft face platform."""
-import asyncio
 from unittest.mock import patch
 
 import pytest
@@ -23,6 +22,12 @@ from homeassistant.setup import async_setup_component
 
 from tests.common import assert_setup_component, load_fixture
 from tests.test_util.aiohttp import AiohttpClientMocker
+
+
+@pytest.fixture(autouse=True)
+async def setup_homeassistant(hass: HomeAssistant):
+    """Set up the homeassistant integration."""
+    await async_setup_component(hass, "homeassistant", {})
 
 
 def create_group(hass, name):
@@ -333,7 +338,7 @@ async def test_service_status_timeout(
     aioclient_mock.put(
         ENDPOINT_URL.format("persongroups/service_group"),
         status=400,
-        exc=asyncio.TimeoutError(),
+        exc=TimeoutError(),
     )
 
     with assert_setup_component(3, mf.DOMAIN):

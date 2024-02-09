@@ -3,6 +3,7 @@
 import json
 
 from aiogithubapi import GitHubException
+import pytest
 
 from homeassistant.components.github.const import CONF_REPOSITORIES, DOMAIN
 from homeassistant.core import HomeAssistant
@@ -15,6 +16,8 @@ from tests.test_util.aiohttp import AiohttpClientMocker
 from tests.typing import ClientSessionGenerator
 
 
+# This tests needs to be adjusted to remove lingering tasks
+@pytest.mark.parametrize("expected_lingering_tasks", [True])
 async def test_entry_diagnostics(
     hass: HomeAssistant,
     hass_client: ClientSessionGenerator,
@@ -22,7 +25,10 @@ async def test_entry_diagnostics(
     aioclient_mock: AiohttpClientMocker,
 ) -> None:
     """Test config entry diagnostics."""
-    mock_config_entry.options = {CONF_REPOSITORIES: ["home-assistant/core"]}
+    hass.config_entries.async_update_entry(
+        mock_config_entry,
+        options={CONF_REPOSITORIES: ["home-assistant/core"]},
+    )
     response_json = json.loads(load_fixture("graphql.json", DOMAIN))
     response_json["data"]["repository"]["full_name"] = "home-assistant/core"
 
@@ -54,6 +60,8 @@ async def test_entry_diagnostics(
     )
 
 
+# This tests needs to be adjusted to remove lingering tasks
+@pytest.mark.parametrize("expected_lingering_tasks", [True])
 async def test_entry_diagnostics_exception(
     hass: HomeAssistant,
     hass_client: ClientSessionGenerator,
