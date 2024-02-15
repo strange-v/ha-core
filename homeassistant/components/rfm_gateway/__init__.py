@@ -1,5 +1,4 @@
 """The RFM Gateway component."""
-# Registering devices https://developers.home-assistant.io/docs/device_registry_index/
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import Platform
